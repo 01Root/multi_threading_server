@@ -7,9 +7,7 @@
 #include "./utils/ThreadSafeQueue.h"
 
 void * myThread::connectionHandler (ThreadSafeQueue &queue)
-{
-    // int connfd = 0;
-    
+{    
     while (1)
     {
         // serverSocket ss(this->get_from_queue());
