@@ -2,21 +2,12 @@
 #define MYTHREAD_H
 #pragma once
 
-#include <mutex>
-#include <condition_variable>
-#include <pthread.h>
-#include <queue>
+#include "./utils/ThreadSafeQueue.h"
 
 // #include "queue.h"
 
 class myThread
-{
-    private:
-        // queue *q;
-        std::mutex mtx;
-        std::condition_variable cv;
-        std::queue<int> q;
-        
+{       
     public:
 
         // push into queue
@@ -25,7 +16,7 @@ class myThread
         // get a connection from the queue.
         int get_from_queue();
 
-        void * connectionHandler ();
+        void * connectionHandler (ThreadSafeQueue &queue);
 
 };
 

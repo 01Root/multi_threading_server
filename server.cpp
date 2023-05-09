@@ -7,10 +7,12 @@
 
 #include "serverSocket.h"
 #include "myThread.h"
+#include "./utils/ThreadSafeQueue.h"
 
 #define PORT 8080
 
 myThread connection_queue;
+ThreadSafeQueue queue;
 
 int main(int argc, char * argv[])
 {
@@ -53,7 +55,7 @@ int main(int argc, char * argv[])
     std::thread thread_pool[2];
     for (int i = 0; i < 2; ++i)
     {
-        thread_pool[i] = std::thread(&myThread::connectionHandler, &connection_queue);
+        thread_pool[i] = std::thread(&myThread::connectionHandler, &connection_queue, std::ref(queue));
         
     }
     for (int i = 0; i < 2; ++i)
@@ -79,7 +81,9 @@ int main(int argc, char * argv[])
             exit(EXIT_FAILURE);
         }
         std::cout << "new connection is :" << new_socket << std::endl;
-        connection_queue.push_into_queue(new_socket); 
+        // connection_queue.push_into_queue(new_socket); 
+        std::cout << "Recv new connection push into queue" << std::endl;
+        queue.push(new_socket);
     }
 
     return 0;
