@@ -1,4 +1,7 @@
+#ifndef SERVERSOCKET_H
+#define SERVERSOCKET_H
 #pragma once
+
 #include <iostream>
 
 #define BUFFER_SIZE 1024
@@ -21,3 +24,5 @@ class serverSocket
         void doProcessing();
         char * server_recv();
 };
+
+#endif

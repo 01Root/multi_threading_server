@@ -1,4 +1,7 @@
+#ifndef FILE_H
+#define FILE_H
 #pragma once
+
 #include <string>
 #include <fstream>
 
@@ -25,3 +28,5 @@ class File
         char * read_file_content();\
         std::ofstream& file_creation(char * file_name);
 };
+
+#endif
