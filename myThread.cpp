@@ -7,20 +7,7 @@
 #include <sys/syscall.h>
 
 #include "myThread.h"
-// #include "queue.h"
 #include "serverSocket.h"
-
-// constructor
-// myThread::myThread(int queue_capasity)
-// {
-//     q = new queue(queue_capasity);
-// }
-
-// destructor
-// myThread::~myThread()
-// {
-//     delete(q);
-// }
 
 // push the connection into queue.
 void myThread::push_into_queue(int value)
