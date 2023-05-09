@@ -1,12 +1,12 @@
-#ifndef MYTHREAD_H
-#define MYTHREAD_H
+#ifndef TASK_H
+#define TASK_H
 #pragma once
 
 #include "./utils/ThreadSafeQueue.h"
 
 // #include "queue.h"
 
-class myThread
+class Task
 {       
     public:
         void * connectionHandler (ThreadSafeQueue &queue);

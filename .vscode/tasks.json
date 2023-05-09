@@ -10,7 +10,7 @@
                 // "${file}",
                 "${workspaceFolder}/server.cpp",
                 "${workspaceFolder}/serverSocket.cpp",
-                "${workspaceFolder}/myThread.cpp",
+                "${workspaceFolder}/Task.cpp",
                 "${workspaceFolder}/utils/*.cpp",
                 "-o",
                 // "${fileDirname}/${fileBasenameNoExtension}"

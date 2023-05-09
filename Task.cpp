@@ -2,11 +2,11 @@
 #include <unistd.h>
 #include <sys/syscall.h>
 
-#include "myThread.h"
+#include "Task.h"
 #include "serverSocket.h"
 #include "./utils/ThreadSafeQueue.h"
 
-void * myThread::connectionHandler (ThreadSafeQueue &queue)
+void * Task::connectionHandler (ThreadSafeQueue &queue)
 {    
     while (1)
     {
