@@ -34,7 +34,7 @@ int myThread::get_from_queue()
     while (this->q.empty())
     {
         std::cout << "Queue is empty, sub-threads are waiting." << std::endl;
-        this->cv.wait(lock);
+        this->cv.wait(lock, [this]{return !this->q.empty(); });
     }
 
     // get an element.

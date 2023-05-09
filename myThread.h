@@ -18,9 +18,6 @@ class myThread
         std::queue<int> q;
         
     public:
-        // constructor and destructor 
-        // myThread(int queue_capasity);
-        // ~myThread();
 
         // push into queue
         void push_into_queue(int value);

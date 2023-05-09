@@ -73,7 +73,6 @@ std::ofstream& File::file_creation(char * file_name)
         strcat(cwd_buffer, temp);
         strcat(cwd_buffer, "/recved_files/");
         strcat(cwd_buffer, file_name);
-        std::cout << "cwd_buffer is " << cwd_buffer << std::endl;
         recv_file.open(cwd_buffer, std::ios::out);
         return recv_file;
     }
