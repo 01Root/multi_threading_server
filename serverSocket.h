@@ -15,8 +15,6 @@ class serverSocket
         int recv_status;
 
         char recv_buff[BUFFER_SIZE];
-        char send_buff[BUFFER_SIZE];
-        
 
     public:
         // constructor
