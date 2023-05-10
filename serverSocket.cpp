@@ -11,26 +11,9 @@ serverSocket::serverSocket(int new_socket)
     this->conn_fd = new_socket;
 }
 
-void serverSocket::doProcessing ()
+// destructor
+serverSocket::~serverSocket()
 {
-    char * file_name;
-    char * file_size;
-    char * file_content;
-
-    // recv file name 
-    file_name = server_recv();
-
-    // create file 
-    File file;
-    std::ofstream &recv_file = file.file_creation(file_name);
-
-    // recv file size
-    file_size = server_recv();
-
-    // recv file content
-    file_content = server_recv();
-    recv_file << file_content;
-
     close(conn_fd);
 }
 
