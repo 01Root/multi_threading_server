@@ -1,5 +1,14 @@
 #include "ThreadSafeQueue.h"
 
+// constructor 
+ThreadSafeQueue::ThreadSafeQueue()
+{}
+ThreadSafeQueue::ThreadSafeQueue(ThreadSafeQueue const & other)
+{
+    std::lock_guard<std::mutex> lock(other.mtx);
+    queue = other.queue;
+}
+
 void ThreadSafeQueue::push (int value)
 {
     // lock 
