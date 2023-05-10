@@ -6,7 +6,6 @@
 #include <pthread.h>
 
 #include "serverSocket.h"
-// #include "myThread.h"
 #include "Task.h"
 #include "./utils/ThreadSafeQueue.h"
 
@@ -52,7 +51,6 @@ int main(int argc, char * argv[])
     }
 
     // make Thread pool.
-    // std::thread t(&myThread::connectionHandler, &connection_queue);
     std::thread thread_pool[2];
     for (int i = 0; i < 2; ++i)
     {
@@ -82,7 +80,6 @@ int main(int argc, char * argv[])
             exit(EXIT_FAILURE);
         }
         std::cout << "new connection is :" << new_socket << std::endl;
-        // connection_queue.push_into_queue(new_socket); 
         std::cout << "Recv new connection push into queue" << std::endl;
         queue.push(new_socket);
     }
