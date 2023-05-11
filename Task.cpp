@@ -34,8 +34,17 @@ void Task::doProcessing(serverSocket & ss)
 
     // recv file size
     file_size = ss.server_recv();
+    file.set_size(atoi(file_size));
 
     // recv file content
-    file_content = ss.server_recv();
-    ofs << file_content;
+    ss.server_recv(file);
+    // ss.server_recv();
+    // int times = 2;
+    // while (times)
+    // {
+    //     file_content = ss.server_recv();
+    //     ofs << file_content;    
+    //     --times;
+    // }
+    
 }

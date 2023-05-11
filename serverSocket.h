@@ -4,6 +4,8 @@
 
 #include <iostream>
 
+#include "./utils/File.h"
+
 #define BUFFER_SIZE 1024
 
 class serverSocket
@@ -21,6 +23,7 @@ class serverSocket
         ~serverSocket();
 
         char * server_recv();
+        void server_recv(File & file);
 };
 
 #endif

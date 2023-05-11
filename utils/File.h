@@ -8,6 +8,7 @@
 class File
 {
     private: 
+        int file_size;
         std::string file_path;
         std::ofstream ofs;
         char buf[1024] = {0};
@@ -20,11 +21,12 @@ class File
         // destructor
         ~File();
 
-        // copy 
-        // void operator= (File& other);
-
         // get_function
         std::ofstream & get_ofs();
+        int get_size();
+
+        // set function 
+        void set_size (int file_size);
 
         // function 
         

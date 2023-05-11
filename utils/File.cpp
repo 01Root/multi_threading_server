@@ -26,7 +26,7 @@ File::File (std::string file_path)
         strcat(cwd_buffer, temp);
         strcat(cwd_buffer, "/recved_files/");
         strcat(cwd_buffer, cfile_path);
-        ofs.open(cwd_buffer, std::ios::out);
+        ofs.open(cwd_buffer, std::ios::out | std::ios::binary);
         // return recv_file;
     }
 }
@@ -38,17 +38,20 @@ File::~File()
     ofs.close();
 }
 
-// copy 
-// void File::operator= (File& other)
-// {
-//     this->file_path = other.file_path;
-//     this->ofs = std::move(other.ofs);
-// }
-
 // get function 
 std::ofstream & File::get_ofs()
 {
     return this->ofs;
+}
+int File::get_size()
+{
+    return this->file_size;
+}
+
+// set function 
+void File::set_size (int file_size)
+{
+    this->file_size = file_size;
 }
 
 std::string File::get_file_name()
