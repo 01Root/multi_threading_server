@@ -27,13 +27,6 @@ class File
 
         // set function 
         void set_size (int file_size);
-
-        // function 
-        
-        std::string get_file_name();
-        int get_file_size();
-        char * read_file_content();\
-        std::ofstream& file_creation(char * file_name);
 };
 
 #endif

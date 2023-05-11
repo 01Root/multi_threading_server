@@ -54,23 +54,4 @@ void File::set_size (int file_size)
     this->file_size = file_size;
 }
 
-std::string File::get_file_name()
-{
-    std::string::size_type iPos = file_path.find_last_of('/') + 1;
-    std::string file_name = file_path.substr(iPos, file_path.length() - iPos);
-    return file_name;
-}
 
-int File::get_file_size()
-{
-    char * cfile_path = (char *) file_path.data();
-    if (NULL == cfile_path)
-    {
-        return 0;
-    }
-
-    struct stat statbuf;
-    stat (cfile_path, &statbuf);
-    size_t file_size = statbuf.st_size;
-    return file_size;
-}
