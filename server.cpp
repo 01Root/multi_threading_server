@@ -79,6 +79,7 @@ int main(int argc, char * argv[])
             perror("accept error!!!!");
             exit(EXIT_FAILURE);
         }
+        
         std::cout << "new connection is :" << new_socket << std::endl;
         std::cout << "Recv new connection push into queue" << std::endl;
         queue.push(new_socket);
