@@ -10,6 +10,7 @@ class File
     private: 
         std::string file_path;
         std::ofstream recv_file;
+        std::ofstream ofs;
         char buf[1024] = {0};
 
     public: 
@@ -19,6 +20,12 @@ class File
 
         // destructor
         ~File();
+
+        // copy 
+        // void operator= (File& other);
+
+        // get_function
+        std::ofstream & get_ofs();
 
         // function 
         

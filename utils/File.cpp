@@ -11,13 +11,44 @@
 File::File (std::string file_path)
 {
     this->file_path = file_path;
+
+    // create a file
+    const char* cfile_path = file_path.c_str();
+    char cwd_buffer[1024] = {0};
+    char * temp;
+    if ((temp = getcwd(NULL, 0)) == NULL)
+    {
+        perror("getcwd fail");
+        exit(EXIT_FAILURE);
+    }
+    else
+    {
+        strcat(cwd_buffer, temp);
+        strcat(cwd_buffer, "/recved_files/");
+        strcat(cwd_buffer, cfile_path);
+        ofs.open(cwd_buffer, std::ios::out);
+        // return recv_file;
+    }
 }
 File::File(){}
 
 // destructor
 File::~File()
 {
-    recv_file.close();
+    ofs.close();
+}
+
+// copy 
+// void File::operator= (File& other)
+// {
+//     this->file_path = other.file_path;
+//     this->ofs = std::move(other.ofs);
+// }
+
+// get function 
+std::ofstream & File::get_ofs()
+{
+    return this->ofs;
 }
 
 std::string File::get_file_name()
@@ -39,23 +70,4 @@ int File::get_file_size()
     stat (cfile_path, &statbuf);
     size_t file_size = statbuf.st_size;
     return file_size;
-}
-
-std::ofstream& File::file_creation(char * file_name)
-{
-    char cwd_buffer[1024] = {0};
-    char * temp;
-    if ((temp = getcwd(NULL, 0)) == NULL)
-    {
-        perror("getcwd fail");
-        exit(EXIT_FAILURE);
-    }
-    else
-    {
-        strcat(cwd_buffer, temp);
-        strcat(cwd_buffer, "/recved_files/");
-        strcat(cwd_buffer, file_name);
-        recv_file.open(cwd_buffer, std::ios::out);
-        return recv_file;
-    }
 }

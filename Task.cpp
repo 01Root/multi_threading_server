@@ -29,13 +29,15 @@ void Task::doProcessing(serverSocket & ss)
     file_name = ss.server_recv();
 
     // create file 
-    File file;
-    std::ofstream &recv_file = file.file_creation(file_name);
+    File file(file_name);
+    // std::ofstream &recv_file = file.file_creation(file_name);
+    std::ofstream &ofs = file.get_ofs();
 
     // recv file size
     file_size = ss.server_recv();
 
     // recv file content
     file_content = ss.server_recv();
-    recv_file << file_content;
+    ofs << file_content;
+    // recv_file << file_content;
 }
