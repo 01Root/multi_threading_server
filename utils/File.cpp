@@ -17,7 +17,6 @@ File::File(){}
 // destructor
 File::~File()
 {
-    ifs.close();
     recv_file.close();
 }
 
@@ -40,23 +39,6 @@ int File::get_file_size()
     stat (cfile_path, &statbuf);
     size_t file_size = statbuf.st_size;
     return file_size;
-}
-
-char * File::read_file_content()
-{
-    ifs.open(file_path, std::ios::in);
-
-    if (!ifs.is_open())
-    {
-        std::cout << "read fail" << std::endl;
-    }
-
-
-    while (ifs.getline(buf, sizeof(buf)))
-    {
-        // std::cout << buf << std::endl;
-        return buf;
-    }
 }
 
 std::ofstream& File::file_creation(char * file_name)
