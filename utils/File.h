@@ -9,7 +9,6 @@ class File
 {
     private: 
         std::string file_path;
-        std::ofstream recv_file;
         std::ofstream ofs;
         char buf[1024] = {0};
 

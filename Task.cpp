@@ -30,7 +30,6 @@ void Task::doProcessing(serverSocket & ss)
 
     // create file 
     File file(file_name);
-    // std::ofstream &recv_file = file.file_creation(file_name);
     std::ofstream &ofs = file.get_ofs();
 
     // recv file size
@@ -39,5 +38,4 @@ void Task::doProcessing(serverSocket & ss)
     // recv file content
     file_content = ss.server_recv();
     ofs << file_content;
-    // recv_file << file_content;
 }
