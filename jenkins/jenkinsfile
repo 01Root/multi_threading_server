@@ -1,10 +1,26 @@
-pipeline{
-    agent any
-    stages{
-        stage("build"){
-            steps{
-                echo "building the app."
-            }
-        }
-    }
+pipeline {
+   agent any
+   stages {
+       stage('cmp 1k') {
+           steps {
+               script {
+                   sh 'cmp ./standard_files/1K.txt ./recved_files/1K.txt'
+               }
+           }
+       }
+      stage('cmp 1M') {
+          steps {
+              script {
+                  sh 'cmp ./standard_files/1M.txt ./recved_files/1M.txt'
+              }
+          }
+      }
+       stage('cmp 100M') {
+           steps {
+               script {
+                   sh 'cmp ./standard_files/100M.txt ./recved_files/100M.txt'
+               }
+           }
+       }
+   }
 }
