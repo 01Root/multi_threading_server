@@ -13,16 +13,16 @@ class ThreadSafeQueue
     private:
         mutable std::mutex mtx;
         std::condition_variable cv;
-        std::queue<int> queue;
+        std::queue<T> queue;
         
     public:
         // constructor 
         ThreadSafeQueue();
         ThreadSafeQueue(ThreadSafeQueue const & other);
 
-        void push(int value);
+        void push(T value);
         bool empty();
-        int wait_and_pop();
+        T wait_and_pop();
 };
 
 #endif

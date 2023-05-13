@@ -13,7 +13,7 @@ ThreadSafeQueue<T>::ThreadSafeQueue(ThreadSafeQueue const & other)
 }
 
 template <typename T>
-void ThreadSafeQueue<T>::push (int value)
+void ThreadSafeQueue<T>::push (T value)
 {
     // lock 
     std::lock_guard<std::mutex> lock(mtx);
@@ -33,7 +33,7 @@ bool ThreadSafeQueue<T>::empty()
 
 // get a connection from queue.
 template <typename T>
-int ThreadSafeQueue<T>::wait_and_pop()
+T ThreadSafeQueue<T>::wait_and_pop()
 {
     // lock 
     std::unique_lock<std::mutex> lock(mtx);
@@ -45,7 +45,7 @@ int ThreadSafeQueue<T>::wait_and_pop()
     }
 
     // get an element.
-    int val = this->queue.front();
+    T val = this->queue.front();
     this->queue.pop();
 
     return val;    
