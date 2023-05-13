@@ -1,6 +1,6 @@
-#include "Task.h"
+#include "tasks.h"
 
-void * Task::connectionHandler (thread_safe_queue<int> &queue)
+void * tasks::connectionHandler (thread_safe_queue<int> &queue)
 {    
     while (1)
     {
@@ -12,7 +12,7 @@ void * Task::connectionHandler (thread_safe_queue<int> &queue)
     }
 }
 
-void Task::doProcessing(serverSocket & ss)
+void tasks::doProcessing(serverSocket & ss)
 {
     char * file_name;
     char * file_size;

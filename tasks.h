@@ -14,7 +14,7 @@
 
 // #include "queue.h"
 
-class Task
+class tasks
 {       
     public:
         void * connectionHandler (thread_safe_queue<int> &queue);

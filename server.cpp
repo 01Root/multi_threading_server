@@ -6,11 +6,11 @@
 #include <pthread.h>
 
 #include "server_socket.h"
-#include "Task.h"
+#include "tasks.h"
 
 #define PORT 8080
 
-Task task;
+tasks task;
 thread_safe_queue<int> queue;
 
 int main(int argc, char * argv[])
@@ -53,7 +53,7 @@ int main(int argc, char * argv[])
     std::thread thread_pool[2];
     for (int i = 0; i < 2; ++i)
     {
-        thread_pool[i] = std::thread(&Task::connectionHandler, &task, std::ref(queue));
+        thread_pool[i] = std::thread(&tasks::connectionHandler, &task, std::ref(queue));
         
     }
     for (int i = 0; i < 2; ++i)
