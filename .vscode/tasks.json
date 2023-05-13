@@ -9,9 +9,8 @@
                 "-g",
                 // "${file}",
                 "${workspaceFolder}/*.cpp",
-                // "${workspaceFolder}/server_socket.cpp",
-                // "${workspaceFolder}/tasks.cpp",
                 "${workspaceFolder}/utils/*.cpp",
+                "${workspaceFolder}/thread_pool/*.cpp",
                 "-o",
                 // "${fileDirname}/${fileBasenameNoExtension}"
                 "${workspaceFolder}/server.exe",
