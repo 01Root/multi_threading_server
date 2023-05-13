@@ -7,12 +7,11 @@
 
 #include "serverSocket.h"
 #include "Task.h"
-#include "./utils/ThreadSafeQueue.h"
 
 #define PORT 8080
 
 Task task;
-ThreadSafeQueue queue;
+ThreadSafeQueue<int> queue;
 
 int main(int argc, char * argv[])
 {

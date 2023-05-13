@@ -6,6 +6,8 @@
 #include <condition_variable>
 #include <queue>
 
+template <typename T>
+
 class ThreadSafeQueue
 {
     private:
@@ -22,7 +24,5 @@ class ThreadSafeQueue
         bool empty();
         int wait_and_pop();
 };
-
-
 
 #endif

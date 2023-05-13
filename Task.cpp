@@ -1,13 +1,6 @@
-#include <iostream>
-#include <unistd.h>
-#include <sys/syscall.h>
-
 #include "Task.h"
-#include "serverSocket.h"
-#include "./utils/ThreadSafeQueue.h"
-#include "./utils/File.h"
 
-void * Task::connectionHandler (ThreadSafeQueue &queue)
+void * Task::connectionHandler (ThreadSafeQueue<int> &queue)
 {    
     while (1)
     {

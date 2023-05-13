@@ -1,15 +1,19 @@
 #include "ThreadSafeQueue.h"
 
 // constructor 
-ThreadSafeQueue::ThreadSafeQueue()
+template <typename T>
+ThreadSafeQueue<T>::ThreadSafeQueue()
 {}
-ThreadSafeQueue::ThreadSafeQueue(ThreadSafeQueue const & other)
+
+template <typename T>
+ThreadSafeQueue<T>::ThreadSafeQueue(ThreadSafeQueue const & other)
 {
     std::lock_guard<std::mutex> lock(other.mtx);
     queue = other.queue;
 }
 
-void ThreadSafeQueue::push (int value)
+template <typename T>
+void ThreadSafeQueue<T>::push (int value)
 {
     // lock 
     std::lock_guard<std::mutex> lock(mtx);
@@ -20,14 +24,16 @@ void ThreadSafeQueue::push (int value)
     this->cv.notify_one();
 }
 
-bool ThreadSafeQueue::empty()
+template <typename T>
+bool ThreadSafeQueue<T>::empty()
 {
     std::lock_guard<std::mutex> lock (mtx);
     return this->queue.empty();
 }
 
 // get a connection from queue.
-int ThreadSafeQueue::wait_and_pop()
+template <typename T>
+int ThreadSafeQueue<T>::wait_and_pop()
 {
     // lock 
     std::unique_lock<std::mutex> lock(mtx);
