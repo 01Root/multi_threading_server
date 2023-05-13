@@ -8,9 +8,9 @@
                 "-fdiagnostics-color=always",
                 "-g",
                 // "${file}",
-                "${workspaceFolder}/server.cpp",
-                "${workspaceFolder}/server_socket.cpp",
-                "${workspaceFolder}/tasks.cpp",
+                "${workspaceFolder}/*.cpp",
+                // "${workspaceFolder}/server_socket.cpp",
+                // "${workspaceFolder}/tasks.cpp",
                 "${workspaceFolder}/utils/*.cpp",
                 "-o",
                 // "${fileDirname}/${fileBasenameNoExtension}"
