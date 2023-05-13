@@ -9,7 +9,7 @@
                 "-g",
                 // "${file}",
                 "${workspaceFolder}/server.cpp",
-                "${workspaceFolder}/serverSocket.cpp",
+                "${workspaceFolder}/server_socket.cpp",
                 "${workspaceFolder}/Task.cpp",
                 "${workspaceFolder}/utils/*.cpp",
                 "-o",

@@ -2,7 +2,7 @@
 #include <sys/socket.h>
 #include <unistd.h>
 
-#include "serverSocket.h"
+#include "server_socket.h"
 #include "./utils/File.h"
 
 // constructor
