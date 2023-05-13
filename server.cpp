@@ -11,7 +11,7 @@
 #define PORT 8080
 
 Task task;
-ThreadSafeQueue<int> queue;
+thread_safe_queue<int> queue;
 
 int main(int argc, char * argv[])
 {

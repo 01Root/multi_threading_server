@@ -1,6 +1,6 @@
 #include "Task.h"
 
-void * Task::connectionHandler (ThreadSafeQueue<int> &queue)
+void * Task::connectionHandler (thread_safe_queue<int> &queue)
 {    
     while (1)
     {

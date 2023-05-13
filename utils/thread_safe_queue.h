@@ -8,7 +8,7 @@
 
 template <typename T>
 
-class ThreadSafeQueue
+class thread_safe_queue
 {
     private:
         mutable std::mutex mtx;
@@ -17,8 +17,8 @@ class ThreadSafeQueue
         
     public:
         // constructor 
-        ThreadSafeQueue();
-        ThreadSafeQueue(ThreadSafeQueue const & other);
+        thread_safe_queue();
+        thread_safe_queue(thread_safe_queue const & other);
 
         void push(T value);
         bool empty();

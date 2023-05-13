@@ -8,8 +8,8 @@
 
 #include "server_socket.h"
 #include "./utils/File.h"
-#include "./utils/ThreadSafeQueue.h"
-#include "./utils/ThreadSafeQueue.cpp"
+#include "./utils/thread_safe_queue.h"
+#include "./utils/thread_safe_queue.cpp"
 #include "server_socket.h"
 
 // #include "queue.h"
@@ -17,7 +17,7 @@
 class Task
 {       
     public:
-        void * connectionHandler (ThreadSafeQueue<int> &queue);
+        void * connectionHandler (thread_safe_queue<int> &queue);
         void doProcessing(serverSocket &ss);
 };
 

@@ -1,19 +1,19 @@
-#include "ThreadSafeQueue.h"
+#include "thread_safe_queue.h"
 
 // constructor 
 template <typename T>
-ThreadSafeQueue<T>::ThreadSafeQueue()
+thread_safe_queue<T>::thread_safe_queue()
 {}
 
 template <typename T>
-ThreadSafeQueue<T>::ThreadSafeQueue(ThreadSafeQueue const & other)
+thread_safe_queue<T>::thread_safe_queue(thread_safe_queue const & other)
 {
     std::lock_guard<std::mutex> lock(other.mtx);
     queue = other.queue;
 }
 
 template <typename T>
-void ThreadSafeQueue<T>::push (T value)
+void thread_safe_queue<T>::push (T value)
 {
     // lock 
     std::lock_guard<std::mutex> lock(mtx);
@@ -25,7 +25,7 @@ void ThreadSafeQueue<T>::push (T value)
 }
 
 template <typename T>
-bool ThreadSafeQueue<T>::empty()
+bool thread_safe_queue<T>::empty()
 {
     std::lock_guard<std::mutex> lock (mtx);
     return this->queue.empty();
@@ -33,7 +33,7 @@ bool ThreadSafeQueue<T>::empty()
 
 // get a connection from queue.
 template <typename T>
-T ThreadSafeQueue<T>::wait_and_pop()
+T thread_safe_queue<T>::wait_and_pop()
 {
     // lock 
     std::unique_lock<std::mutex> lock(mtx);
