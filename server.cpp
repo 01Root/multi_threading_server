@@ -18,7 +18,7 @@ int main(int argc, char * argv[])
     int server_fd = 0, connfd = 0;
     struct sockaddr_in serv_addr; 
     int address = sizeof(serv_addr);
-    int recv;
+    int recv = 0;
     
     // get param form command line 
     // if (argc != 4)

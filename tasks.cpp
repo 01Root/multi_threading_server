@@ -14,9 +14,9 @@ void * tasks::connectionHandler (thread_safe_queue<int> &queue)
 
 void tasks::doProcessing(serverSocket & ss)
 {
-    char * file_name;
-    char * file_size;
-    char * file_content;
+    char * file_name = "";
+    char * file_size = "";
+    char * file_content = "";
 
     // recv file name 
     file_name = ss.server_recv();
