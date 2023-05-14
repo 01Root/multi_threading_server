@@ -5,13 +5,10 @@
 #include <unistd.h>
 #include <bits/stdc++.h> 
 
-#include "file.h"
+#include "./file.h"
 
 //init 
-
-
-// constructor 
-file::file (std::string file_path)
+file::file (std::string file_path):file_size(0), file_path(""), buf("") 
 {
     this->file_path = file_path;
 
@@ -37,7 +34,6 @@ file::file (std::string file_path)
         }
     }
 }
-file::file(){}
 
 // destructor
 file::~file()

@@ -14,8 +14,7 @@ class file
         char buf[1024];
 
     public: 
-        // constructor
-        file();
+        // init
         file (std::string file_path);
 
         // destructor
