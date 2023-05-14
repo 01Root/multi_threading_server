@@ -1,11 +1,11 @@
 #include "tasks.h"
 
-void * tasks::connectionHandler (thread_safe_queue<int> &queue)
+void * tasks::connectionHandler (thread_safe_queue<int> &conn_queue)
 {    
     while (1)
     {
         // serverSocket ss(this->get_from_queue());
-        serverSocket ss(queue.wait_and_pop());
+        serverSocket ss(conn_queue.wait_and_pop());
         std::cout << "The subThread " << syscall(SYS_gettid) << "is ";
         std::cout << "processing : " << std::endl;
         this->doProcessing(ss);
@@ -14,9 +14,9 @@ void * tasks::connectionHandler (thread_safe_queue<int> &queue)
 
 void tasks::doProcessing(serverSocket & ss)
 {
-    char * file_name = "";
-    char * file_size = "";
-    char * file_content = "";
+    char * file_name = nullptr;
+    char * file_size = nullptr;
+    char * file_content = nullptr;
 
     // recv file name 
     file_name = ss.server_recv();

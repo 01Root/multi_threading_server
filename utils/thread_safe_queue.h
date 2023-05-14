@@ -13,7 +13,7 @@ class thread_safe_queue
     private:
         mutable std::mutex mtx;
         std::condition_variable cv;
-        std::queue<T> queue;
+        std::queue<T> conn_queue;
         
     public:
         // constructor 
