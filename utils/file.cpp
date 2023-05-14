@@ -5,7 +5,7 @@
 #include <unistd.h>
 #include <bits/stdc++.h> 
 
-#include "File.h"
+#include "file.h"
 
 // constructor 
 File::File (std::string file_path)

@@ -4,7 +4,7 @@
 
 #include <iostream>
 
-#include "./utils/File.h"
+#include "./utils/file.h"
 
 #define BUFFER_SIZE 1024
 

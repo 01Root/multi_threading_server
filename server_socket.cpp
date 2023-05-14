@@ -3,7 +3,7 @@
 #include <unistd.h>
 
 #include "server_socket.h"
-#include "./utils/File.h"
+#include "./utils/file.h"
 
 // constructor
 serverSocket::serverSocket(int new_socket)
@@ -33,11 +33,11 @@ char * serverSocket::server_recv()
     return recv_buff;
 }
 
-void serverSocket::server_recv(File & file)
+void serverSocket::server_recv(File & recv_file)
 {
-    int file_size = file.get_size();
+    int file_size = recv_file.get_size();
     int recved_size = 0;
-    std::ofstream &ofs = file.get_ofs();
+    std::ofstream &ofs = recv_file.get_ofs();
 
     while (recved_size < file_size)
     {
