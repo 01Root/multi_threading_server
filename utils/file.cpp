@@ -7,8 +7,11 @@
 
 #include "file.h"
 
+//init 
+
+
 // constructor 
-File::File (std::string file_path)
+file::file (std::string file_path)
 {
     this->file_path = file_path;
 
@@ -34,26 +37,26 @@ File::File (std::string file_path)
         }
     }
 }
-File::File(){}
+file::file(){}
 
 // destructor
-File::~File()
+file::~file()
 {
     ofs.close();
 }
 
 // get function 
-std::ofstream & File::get_ofs()
+std::ofstream & file::get_ofs()
 {
     return this->ofs;
 }
-int File::get_size()
+int file::get_size()
 {
     return this->file_size;
 }
 
 // set function 
-void File::set_size (int file_size)
+void file::set_size (int file_size)
 {
     this->file_size = file_size;
 }

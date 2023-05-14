@@ -22,7 +22,7 @@ void tasks::doProcessing(serverSocket & ss)
     file_name = ss.server_recv();
 
     // create file 
-    File recv_file(file_name);
+    file recv_file(file_name);
     std::ofstream &ofs = recv_file.get_ofs();
 
     // recv file size

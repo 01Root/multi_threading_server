@@ -5,6 +5,9 @@
 #include "server_socket.h"
 #include "./utils/file.h"
 
+//init 
+serverSocket::serverSocket():conn_fd(0), recv_status(0), recv_buff(""){}
+
 // constructor
 serverSocket::serverSocket(int new_socket)
 {
@@ -33,7 +36,7 @@ char * serverSocket::server_recv()
     return recv_buff;
 }
 
-void serverSocket::server_recv(File & recv_file)
+void serverSocket::server_recv(file & recv_file)
 {
     int file_size = recv_file.get_size();
     int recved_size = 0;

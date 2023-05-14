@@ -16,6 +16,7 @@ class serverSocket
         char recv_buff[BUFFER_SIZE];
 
     public:
+        serverSocket();
         // constructor
         serverSocket(int new_socket);
 
@@ -23,7 +24,7 @@ class serverSocket
         ~serverSocket();
 
         char * server_recv();
-        void server_recv(File & file);
+        void server_recv(file & recv_file);
 };
 
 #endif

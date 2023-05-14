@@ -5,21 +5,21 @@
 #include <string>
 #include <fstream>
 
-class File
+class file
 {
     private: 
         int file_size;
         std::string file_path;
         std::ofstream ofs;
-        char buf[1024] = {0};
+        char buf[1024];
 
     public: 
         // constructor
-        File();
-        File (std::string file_path);
+        file();
+        file (std::string file_path);
 
         // destructor
-        ~File();
+        ~file();
 
         // get_function
         std::ofstream & get_ofs();
