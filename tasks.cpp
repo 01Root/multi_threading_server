@@ -31,13 +31,4 @@ void tasks::doProcessing(serverSocket & ss)
 
     // recv file content
     ss.server_recv(recv_file);
-    // ss.server_recv();
-    // int times = 2;
-    // while (times)
-    // {
-    //     file_content = ss.server_recv();
-    //     ofs << file_content;    
-    //     --times;
-    // }
-    
 }

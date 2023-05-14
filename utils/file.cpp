@@ -27,7 +27,11 @@ File::File (std::string file_path)
         strcat(cwd_buffer, "/recved_files/");
         strcat(cwd_buffer, cfile_path);
         ofs.open(cwd_buffer, std::ios::out | std::ios::binary);
-        // return recv_file;
+        if (!ofs)
+        {
+            perror("create file fail");
+            exit(EXIT_FAILURE);
+        }
     }
 }
 File::File(){}
