@@ -25,18 +25,8 @@ int main(int argc, char * argv[])
     // socket creation 
     server_fd = server.socket_creation();
 
-    // bind 
-    memset(&serv_addr, '0', sizeof(serv_addr));
-    serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    serv_addr.sin_port = htons(PORT); 
-    
-    recv = bind(server_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr));
-    if (recv < 0)
-    {
-        perror("bind fail.");
-        exit(1);
-    }
+    // bind
+    server_fd = server.socket_bind();
 
     // make Thread pool.
     std::thread thread_pool[2];

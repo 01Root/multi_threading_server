@@ -15,10 +15,13 @@ class server_socket
 {
     private:
         int conn_fd;
+        
         int recv_status;
+
         char recv_buff[BUFFER_SIZE];
         bool close_status;
         exception_hander excep_hander;
+        
 
     public:
         // constructor
@@ -35,6 +38,9 @@ class server_socket
         int socket_creation();
 
         // bind 
+        int socket_bind();
+
+        // listen 
         
 
         // destructor

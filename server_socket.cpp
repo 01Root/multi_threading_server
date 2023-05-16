@@ -39,6 +39,26 @@ int server_socket::socket_creation()
     return this->conn_fd;
 }
 
+// socket bind 
+int server_socket::socket_bind()
+{
+    struct sockaddr_in serv_addr; 
+    int address = sizeof(serv_addr);
+    const wchar_t PORT = 8080;
+
+    memset(&serv_addr, '0', sizeof(serv_addr));
+    serv_addr.sin_family = AF_INET;
+    serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    serv_addr.sin_port = htons(PORT); 
+    
+    recv_status = bind(conn_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr));
+    if (recv < 0)
+    {
+        excep_hander.print_and_exit("bind fail.");
+    }
+    return this->conn_fd;
+}
+
 // closed
 void server_socket::closed()
 {
