@@ -13,7 +13,7 @@ file::file (std::string file_path):file_size(0), file_path(file_path), buf("")
     // create a file
     const char* cfile_path = file_path.c_str();
     char cwd_buffer[1024] = {0};
-    char * temp = nullptr;
+    char * temp = nullptr; 
     if ((temp = getcwd(NULL, 0)) == NULL)
     {
         perror("getcwd fail");

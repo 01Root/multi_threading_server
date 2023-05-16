@@ -15,7 +15,7 @@ class file
 
     public: 
         // init
-        file (std::string file_path);
+        explicit file (std::string file_path);
 
         // destructor
         ~file();
