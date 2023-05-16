@@ -11,6 +11,7 @@ class file
         int file_size;
         std::string file_path;
         std::ofstream ofs;
+        bool close_status;
 
     public: 
         // init

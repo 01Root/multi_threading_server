@@ -8,7 +8,7 @@
 #include "./file.h"
 
 //init 
-file::file (std::string file_path):file_size(0), file_path(file_path)
+file::file (std::string file_path):file_size(0), file_path(file_path), close_status(false)
 {
     // create a file
     const char* cfile_path = file_path.c_str();

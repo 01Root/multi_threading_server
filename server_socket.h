@@ -14,6 +14,7 @@ class serverSocket
         int conn_fd;
         int recv_status;
         char recv_buff[BUFFER_SIZE];
+        bool close_status;
 
     public:
         // constructor
@@ -28,6 +29,9 @@ class serverSocket
 
         // destructor
         ~serverSocket();
+
+        // closed
+        void closed();
 
         char * server_recv();
         void server_recv(file & recv_file);

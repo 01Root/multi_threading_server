@@ -6,7 +6,7 @@
 #include "./utils/file.h"
 
 //init 
-serverSocket::serverSocket():conn_fd(0), recv_status(0), recv_buff(""){}
+serverSocket::serverSocket():conn_fd(0), recv_status(0), recv_buff(""), close_status(true){}
 
 // constructor
 serverSocket::serverSocket(int new_socket)
@@ -28,19 +28,28 @@ serverSocket & serverSocket::operator = (const serverSocket &other)
     strncpy(this->recv_buff, other.recv_buff, BUFFER_SIZE); 
 }
 
+// closed
+void serverSocket::closed()
+{
+    close(this->conn_fd);
+    this->close_status = true;
+}
+
 // destructor
 serverSocket::~serverSocket()
 {
-    try
+    if (!this->close_status)
     {
-        close(conn_fd);
+        try
+        {
+            this->closed();
+        }
+        catch(...)
+        {
+            perror("close connection fail!");
+            exit(EXIT_FAILURE);
+        }
     }
-    catch(...)
-    {
-        perror("close connection fail!");
-        exit(EXIT_FAILURE);
-    }
-    
 }
 
 char * serverSocket::server_recv()
