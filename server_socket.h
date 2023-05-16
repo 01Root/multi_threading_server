@@ -6,7 +6,7 @@
 
 #include "./utils/file.h"
 
-#define BUFFER_SIZE 1024
+const wchar_t BUFFER_SIZE = 1024;
 
 class serverSocket
 {
@@ -16,9 +16,9 @@ class serverSocket
         char recv_buff[BUFFER_SIZE];
 
     public:
-        serverSocket();
+        explicit serverSocket();
         // constructor
-        serverSocket(int new_socket);
+        explicit serverSocket(int new_socket);
 
         // destructor
         ~serverSocket();
