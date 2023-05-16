@@ -11,7 +11,6 @@ class file
         int file_size;
         std::string file_path;
         std::ofstream ofs;
-        char buf[1024];
 
     public: 
         // init
