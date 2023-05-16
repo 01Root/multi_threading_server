@@ -15,7 +15,7 @@ thread_safe_queue<int> conn_queue;
 
 int main(int argc, char * argv[])
 {
-    int server_fd = 0, connfd = 0;
+    int server_fd = 0;
     struct sockaddr_in serv_addr; 
     int address = sizeof(serv_addr);
     int recv = 0;
