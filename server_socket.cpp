@@ -14,6 +14,20 @@ serverSocket::serverSocket(int new_socket)
     this->conn_fd = new_socket;
 }
 
+// copy, copy assignment, move, move assignment.
+serverSocket::serverSocket(const serverSocket &other)
+{
+    this->conn_fd = other.conn_fd;
+    this->recv_status = other.recv_status;
+    strncpy(this->recv_buff, other.recv_buff, BUFFER_SIZE);  
+}
+serverSocket & serverSocket::operator = (const serverSocket &other)
+{
+    this->conn_fd = other.conn_fd;
+    this->recv_status = other.recv_status;
+    strncpy(this->recv_buff, other.recv_buff, BUFFER_SIZE); 
+}
+
 // destructor
 serverSocket::~serverSocket()
 {

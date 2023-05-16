@@ -33,6 +33,14 @@ file::file (std::string file_path):file_size(0), file_path(file_path)
     }
 }
 
+//move and move assignment 
+file::file(file && other)
+{
+    this->file_path = std::move(other.file_path);
+    this->file_size = std::move(other.file_size);
+    this->ofs = std::move(other.ofs);
+}
+
 // destructor
 file::~file()
 {
