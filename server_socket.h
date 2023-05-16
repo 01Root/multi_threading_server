@@ -15,6 +15,8 @@ class serverSocket
         int recv_status;
         char recv_buff[BUFFER_SIZE];
 
+        void swap(serverSocket & other);
+
     public:
         // constructor
         explicit serverSocket();
@@ -22,7 +24,7 @@ class serverSocket
 
         // copy, copy assignment, move, move assignment  
         serverSocket(const serverSocket &other);
-        serverSocket & operator = (const serverSocket &other);
+        serverSocket & operator = (serverSocket &other);
         serverSocket(const serverSocket && other) = delete;
         serverSocket & operator = (const serverSocket && other) = delete;
 

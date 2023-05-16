@@ -14,6 +14,13 @@ serverSocket::serverSocket(int new_socket)
     this->conn_fd = new_socket;
 }
 
+// swap
+void serverSocket::swap(serverSocket & other)
+{
+    std::swap(this->conn_fd, other.conn_fd);
+    std::swap(this->recv_status, other.recv_status);
+}
+
 // copy, copy assignment, move, move assignment.
 serverSocket::serverSocket(const serverSocket &other)
 {
@@ -21,10 +28,9 @@ serverSocket::serverSocket(const serverSocket &other)
     this->recv_status = other.recv_status;
     strncpy(this->recv_buff, other.recv_buff, BUFFER_SIZE);  
 }
-serverSocket & serverSocket::operator = (const serverSocket &other)
+serverSocket & serverSocket::operator = (serverSocket &other)
 {
-    this->conn_fd = other.conn_fd;
-    this->recv_status = other.recv_status;
+    this->swap(other);
     strncpy(this->recv_buff, other.recv_buff, BUFFER_SIZE); 
 }
 
