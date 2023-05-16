@@ -18,7 +18,7 @@ class tasks
 {       
     public:
         void * connectionHandler (thread_safe_queue<int> &queue);
-        void doProcessing(serverSocket &ss);
+        void doProcessing(server_socket &ss);
 };
 
 #endif

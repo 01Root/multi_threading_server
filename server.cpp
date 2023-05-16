@@ -20,26 +20,15 @@ int main(int argc, char * argv[])
     int address = sizeof(serv_addr);
     int recv = 0;
     
-    // get param form command line 
-    // if (argc != 4)
-    // {
-    //     std::cout << "Please input these parameters: port, number_of_threads, size_of_connections_array" << std::endl;
-    //     return 1;
-    // }
+    server_socket server;
 
     // socket creation 
-    server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (server_fd < 0)
-    {
-        perror("Error in socket creation.");
-        exit(1);
-    }
+    server_fd = server.socket_creation();
 
     // bind 
     memset(&serv_addr, '0', sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
     serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    // serv_addr.sin_port = htons(atoi(argv[1])); 
     serv_addr.sin_port = htons(PORT); 
     
     recv = bind(server_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr));

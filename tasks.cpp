@@ -4,15 +4,15 @@ void * tasks::connectionHandler (thread_safe_queue<int> &conn_queue)
 {    
     while (1)
     {
-        // serverSocket ss(this->get_from_queue());
-        serverSocket ss(conn_queue.wait_and_pop());
+        // server_socket ss(this->get_from_queue());
+        server_socket ss(conn_queue.wait_and_pop());
         std::cout << "The subThread " << syscall(SYS_gettid) << "is ";
         std::cout << "processing : " << std::endl;
         this->doProcessing(ss);
     }
 }
 
-void tasks::doProcessing(serverSocket & ss)
+void tasks::doProcessing(server_socket & ss)
 {
     char * file_name = nullptr;
     char * file_size = nullptr;

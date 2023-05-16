@@ -3,13 +3,15 @@
 #pragma once
 
 #include <iostream>
+#include <netinet/in.h>
+#include <sys/socket.h>
 
 #include "./utils/file.h"
 #include "./utils/exception_hander.h"
 
 const wchar_t BUFFER_SIZE = 1024;
 
-class serverSocket
+class server_socket
 {
     private:
         int conn_fd;
@@ -20,20 +22,27 @@ class serverSocket
 
     public:
         // constructor
-        explicit serverSocket();
-        explicit serverSocket(int new_socket);
+        explicit server_socket();
+        explicit server_socket(int new_socket);
 
         // copy, copy assignment, move, move assignment  
-        serverSocket(const serverSocket &other);
-        serverSocket & operator = (const serverSocket &other);
-        serverSocket(const serverSocket && other) = delete;
-        serverSocket & operator = (const serverSocket && other) = delete;
+        server_socket(const server_socket &other);
+        server_socket & operator = (const server_socket &other);
+        server_socket(const server_socket && other) = delete;
+        server_socket & operator = (const server_socket && other) = delete;
+
+        // socket creation.
+        int socket_creation();
+
+        // bind 
+        
 
         // destructor
-        ~serverSocket();
+        ~server_socket();
 
         // closed
         void closed();
+
 
         char * server_recv();
         void server_recv(file & recv_file);
