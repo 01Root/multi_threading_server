@@ -11,12 +11,19 @@ class file
         int file_size;
         std::string file_path;
         std::ofstream ofs;
-        char buf[1024];
 
     public: 
         // init
         explicit file () = delete;
         explicit file (std::string file_path);
+
+        // copy constructor and copy assign 
+        file(const file &other) = delete;
+        file & operator = (const file &other) = delete;
+
+        // move and move assignment 
+        file (file && other);
+        file & operator = (const file &&other) = delete;
 
         // destructor
         ~file();

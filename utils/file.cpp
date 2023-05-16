@@ -8,7 +8,7 @@
 #include "./file.h"
 
 //init 
-file::file (std::string file_path):file_size(0), file_path(file_path), buf("") 
+file::file (std::string file_path):file_size(0), file_path(file_path)
 {
     // create a file
     const char* cfile_path = file_path.c_str();
@@ -31,6 +31,14 @@ file::file (std::string file_path):file_size(0), file_path(file_path), buf("")
             exit(EXIT_FAILURE);
         }
     }
+}
+
+//move and move assignment 
+file::file(file && other)
+{
+    this->file_path = std::move(other.file_path);
+    this->file_size = std::move(other.file_size);
+    this->ofs = std::move(other.ofs);
 }
 
 // destructor
