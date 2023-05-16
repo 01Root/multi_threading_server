@@ -5,6 +5,8 @@
 #include <string>
 #include <fstream>
 
+#include "exception_hander.h"
+
 class file
 {
     private: 
@@ -12,6 +14,7 @@ class file
         std::string file_path;
         std::ofstream ofs;
         bool close_status;
+        exception_hander excep_hander;
 
     public: 
         // init

@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "./utils/file.h"
+#include "./utils/exception_hander.h"
 
 const wchar_t BUFFER_SIZE = 1024;
 
@@ -15,6 +16,7 @@ class serverSocket
         int recv_status;
         char recv_buff[BUFFER_SIZE];
         bool close_status;
+        exception_hander excep_hander;
 
     public:
         // constructor

@@ -16,8 +16,7 @@ file::file (std::string file_path):file_size(0), file_path(file_path), close_sta
     char * temp = nullptr; 
     if ((temp = getcwd(NULL, 0)) == NULL)
     {
-        perror("getcwd fail");
-        exit(EXIT_FAILURE);
+        excep_hander.print_and_exit("getcwd fail.");
     }
     else
     {
@@ -27,8 +26,7 @@ file::file (std::string file_path):file_size(0), file_path(file_path), close_sta
         ofs.open(cwd_buffer, std::ios::out | std::ios::binary);
         if (!ofs)
         {
-            perror("create file fail");
-            exit(EXIT_FAILURE);
+            excep_hander.print_and_exit("create file fail.");
         }
     }
 }
@@ -50,8 +48,7 @@ file::~file()
     }
     catch(...)
     {
-        perror("close file fail!");
-        exit(EXIT_FAILURE);
+        excep_hander.print_and_exit("close file fail.");
     }
     
 }

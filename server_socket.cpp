@@ -46,8 +46,7 @@ serverSocket::~serverSocket()
         }
         catch(...)
         {
-            perror("close connection fail!");
-            exit(EXIT_FAILURE);
+            excep_hander.print_and_exit("close connection fail!");
         }
     }
 }
@@ -59,8 +58,7 @@ char * serverSocket::server_recv()
     recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
     if (recv_status == -1)
     {
-        perror("recv fail.");
-        exit(1);
+        excep_hander.print_and_exit("recv fail.");
     }
     recv_buff[recv_status] = '\0';
 
@@ -81,8 +79,7 @@ void serverSocket::server_recv(file & recv_file)
         recv_status = recv(conn_fd, recv_buff, 1024, 0);
         if (recv_status == -1)
         {
-            perror("recv fail.");
-            exit(1);
+            excep_hander.print_and_exit("recv fail.");
         }
         recv_buff[recv_status] = '\0';
         ofs << recv_buff;
