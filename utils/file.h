@@ -17,11 +17,9 @@ class file
         explicit file () = delete;
         explicit file (std::string file_path);
 
-        // copy constructor and copy assign 
+        // copy, copy assign, move, move assign 
         file(const file &other) = delete;
         file & operator = (const file &other) = delete;
-
-        // move and move assignment 
         file (file && other);
         file & operator = (const file &&other) = delete;
 
