@@ -15,6 +15,7 @@ class file
 
     public: 
         // init
+        explicit file () = delete;
         explicit file (std::string file_path);
 
         // destructor
