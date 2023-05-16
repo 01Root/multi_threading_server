@@ -44,7 +44,16 @@ file::file(file && other)
 // destructor
 file::~file()
 {
-    ofs.close();
+    try
+    {
+        ofs.close();
+    }
+    catch(...)
+    {
+        perror("close file fail!");
+        exit(EXIT_FAILURE);
+    }
+    
 }
 
 // get function 

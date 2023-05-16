@@ -31,7 +31,16 @@ serverSocket & serverSocket::operator = (const serverSocket &other)
 // destructor
 serverSocket::~serverSocket()
 {
-    close(conn_fd);
+    try
+    {
+        close(conn_fd);
+    }
+    catch(...)
+    {
+        perror("close connection fail!");
+        exit(EXIT_FAILURE);
+    }
+    
 }
 
 char * serverSocket::server_recv()
