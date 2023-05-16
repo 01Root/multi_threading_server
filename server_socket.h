@@ -16,9 +16,15 @@ class serverSocket
         char recv_buff[BUFFER_SIZE];
 
     public:
-        explicit serverSocket();
         // constructor
+        explicit serverSocket();
         explicit serverSocket(int new_socket);
+
+        // copy, copy assignment, move, move assignment  
+        serverSocket(const serverSocket &other);
+        serverSocket & operator = (const serverSocket &other);
+        serverSocket(const serverSocket && other) = delete;
+        serverSocket & operator = (const serverSocket && other) = delete;
 
         // destructor
         ~serverSocket();
