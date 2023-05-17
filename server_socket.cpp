@@ -33,29 +33,21 @@ server_socket::server_socket(std::string internet_address_family,std::string soc
     }
 }
 server_socket::server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port)
+                :server_socket("ipv4", "tcp")
 {
-    if(("ipv4" == internet_address_family) && ("tcp" == socket_type) && ("any" == ip_address))
+    if ("any" == ip_address)
     {
-        this->socket_creation();
         this->socket_bind(ip_address, port);
     }
     else
     {
-        excep_hander.print_and_exit("please write correctly.");
+        excep_hander.print_and_exit("please write correct ip address.");
     }
 }
 server_socket::server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port, int listen_num)
+                :server_socket("ipv4", "tcp", "any", 8080)
 {
-    if(("ipv4" == internet_address_family) && ("tcp" == socket_type) && ("any" == ip_address))
-    {
-        this->socket_creation();
-        this->socket_bind(ip_address, port);
-        this->socket_listen(listen_num);
-    }
-    else
-    {
-        excep_hander.print_and_exit("please write correctly.");
-    }
+    this->socket_listen(listen_num);
 }
 
 
