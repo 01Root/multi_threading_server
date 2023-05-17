@@ -5,24 +5,6 @@ template <typename T>
 thread_safe_queue<T>::thread_safe_queue()
 {}
 
-// copy, copy assign, move, move assign 
-template <typename T>
-thread_safe_queue<T>::thread_safe_queue(thread_safe_queue<T> const & other)
-{
-    this->cv = other.cv;
-    this->mtx = other.mtx;
-    this->conn_queue = other.conn_queue;
-}
-
-template <typename T>
-thread_safe_queue<T> & thread_safe_queue<T>::operator = (const thread_safe_queue<T> &other)
-{
-    this->cv = other.cv;
-    this->mtx = other.mtx;
-    this->conn_queue = other.conn_queue;
-    return *this;
-}
-
 // push 
 template <typename T>
 void thread_safe_queue<T>::push (T value)
