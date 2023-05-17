@@ -30,10 +30,6 @@ int main(int argc, char * argv[])
         thread_pool[i].detach();
     }
 
-    // listen
-    // server.socket_listen(10);
-
-
     // accept and push the new socket into the conn_queue.
     while (1)
     {

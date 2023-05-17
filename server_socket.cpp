@@ -114,6 +114,7 @@ void server_socket::socket_listen(int listen_num)
     }
 }
 
+// accept 
 int server_socket::socket_accept()
 {
     int address = sizeof(serv_addr);
@@ -124,6 +125,44 @@ int server_socket::socket_accept()
         exit(EXIT_FAILURE);
     }
     return new_socket;
+}
+
+// recv 
+char * server_socket::server_recv()
+{
+    // recv data from client 
+    memset(recv_buff, '0', sizeof(recv_buff));
+    recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
+    if (recv_status == -1)
+    {
+        excep_hander.print_and_exit("recv fail.");
+    }
+    recv_buff[recv_status] = '\0';
+
+    std::cout << "The received buffer is " << recv_buff << std::endl;
+    return recv_buff;
+}
+void server_socket::server_recv(file & recv_file)
+{
+    int file_size = recv_file.get_size();
+    int recved_size = 0;
+    std::ofstream &ofs = recv_file.get_ofs();
+
+    while (recved_size < file_size)
+    {
+        memset(recv_buff, '0', sizeof(recv_buff));
+        // recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
+        recv_status = recv(conn_fd, recv_buff, 1024, 0);
+        if (recv_status == -1)
+        {
+            excep_hander.print_and_exit("recv fail.");
+        }
+        recv_buff[recv_status] = '\0';
+        ofs << recv_buff;
+        // std::cout << "The received buffer is " << recv_buff << std::endl;
+        recved_size += recv_status;
+    }
+    std::cout << "recved_done." <<std::endl;
 }
 
 // closed
@@ -147,42 +186,4 @@ server_socket::~server_socket()
             excep_hander.print_and_exit("close connection fail!");
         }
     }
-}
-
-char * server_socket::server_recv()
-{
-    // recv data from client 
-    memset(recv_buff, '0', sizeof(recv_buff));
-    recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
-    if (recv_status == -1)
-    {
-        excep_hander.print_and_exit("recv fail.");
-    }
-    recv_buff[recv_status] = '\0';
-
-    std::cout << "The received buffer is " << recv_buff << std::endl;
-    return recv_buff;
-}
-
-void server_socket::server_recv(file & recv_file)
-{
-    int file_size = recv_file.get_size();
-    int recved_size = 0;
-    std::ofstream &ofs = recv_file.get_ofs();
-
-    while (recved_size < file_size)
-    {
-        memset(recv_buff, '0', sizeof(recv_buff));
-        // recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
-        recv_status = recv(conn_fd, recv_buff, 1024, 0);
-        if (recv_status == -1)
-        {
-            excep_hander.print_and_exit("recv fail.");
-        }
-        recv_buff[recv_status] = '\0';
-        ofs << recv_buff;
-        // std::cout << "The received buffer is " << recv_buff << std::endl;
-        recved_size += recv_status;
-    }
-    std::cout << "recved_done." <<std::endl;
 }

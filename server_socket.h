@@ -58,15 +58,15 @@ class server_socket
         // accept
         int socket_accept();
 
-        // destructor
-        ~server_socket();
+        // recv 
+        char * server_recv();
+        void server_recv(file & recv_file);
 
         // closed
         void closed();
 
-
-        char * server_recv();
-        void server_recv(file & recv_file);
+        // destructor
+        ~server_socket();
 };
 
 #endif
