@@ -9,6 +9,7 @@ class exception_hander
         std::string str;
 
     public:
+        // constructor 
         explicit exception_hander();
         explicit exception_hander(std::string str);
 

@@ -20,6 +20,7 @@ thread_safe_queue<T> & thread_safe_queue<T>::operator = (const thread_safe_queue
     this->cv = other.cv;
     this->mtx = other.mtx;
     this->conn_queue = other.conn_queue;
+    return *this;
 }
 
 // push 

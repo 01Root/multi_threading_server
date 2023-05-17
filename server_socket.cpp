@@ -63,6 +63,7 @@ server_socket & server_socket::operator = (const server_socket &other)
     this->conn_fd = other.conn_fd;
     this->recv_status = other.recv_status;
     strncpy(this->recv_buff, other.recv_buff, BUFFER_SIZE); 
+    return *this;
 }
 
 // socket creation 
