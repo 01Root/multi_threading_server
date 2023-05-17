@@ -40,6 +40,9 @@ class server_socket
         explicit server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port);
         explicit server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port, int listen_num);
 
+        // swap
+        void swap(server_socket & lhs, server_socket & rhs);
+
         // copy, copy assignment, move, move assignment  
         server_socket(const server_socket &other);
         server_socket & operator = (const server_socket &other);

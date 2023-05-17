@@ -50,19 +50,32 @@ server_socket::server_socket(std::string internet_address_family,std::string soc
     this->socket_listen(listen_num);
 }
 
+// swap
+void server_socket::swap(server_socket & lhs, server_socket & rhs)
+{
+    std::swap(lhs.conn_fd, rhs.conn_fd);
+    std::swap(lhs.internet_address_family, rhs.internet_address_family);
+    std::swap(lhs.socket_type, rhs.socket_type);
+    std::swap(lhs.ip_address, rhs.ip_address);
+    std::swap(lhs.port, rhs.port);
+    std::swap(lhs.serv_addr, rhs.serv_addr);
+    std::swap(lhs.listen_num, rhs.listen_num);
+    std::swap(lhs.recv_status, rhs.recv_status);
+    std::swap(lhs.recv_buff, rhs.recv_buff);
+    std::swap(lhs.close_status, rhs.close_status);
+    std::swap(lhs.excep_hander, rhs.excep_hander);
+}
 
 // copy, copy assignment, move, move assignment.
 server_socket::server_socket(const server_socket &other)
 {
-    this->conn_fd = other.conn_fd;
-    this->recv_status = other.recv_status;
-    strncpy(this->recv_buff, other.recv_buff, BUFFER_SIZE);  
+    server_socket temp(other);
+    this->swap(*this, temp); 
 }
 server_socket & server_socket::operator = (const server_socket &other)
 {
-    this->conn_fd = other.conn_fd;
-    this->recv_status = other.recv_status;
-    strncpy(this->recv_buff, other.recv_buff, BUFFER_SIZE); 
+    server_socket temp(other);
+    this->swap(*this, temp);
     return *this;
 }
 
