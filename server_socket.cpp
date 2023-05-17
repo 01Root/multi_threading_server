@@ -6,13 +6,58 @@
 #include "./utils/file.h"
 
 //init 
-server_socket::server_socket():conn_fd(0), recv_status(0), recv_buff(""), close_status(true){}
+server_socket::server_socket():conn_fd(0),
+                                internet_address_family(""), 
+                                socket_type(""), 
+                                ip_address(""),
+                                port(0),
+                                listen_num(0),
+                                recv_status(0), 
+                                recv_buff(""), 
+                                close_status(true){}
 
 // constructor
 server_socket::server_socket(int new_socket)
 {
     this->conn_fd = new_socket;
 }
+server_socket::server_socket(std::string internet_address_family,std::string socket_type)
+{
+    if(("ipv4" == internet_address_family) && ("tcp" == socket_type))
+    {
+        this->socket_creation();
+    }
+    else
+    {
+        excep_hander.print_and_exit("please write right address family and socket type.");
+    }
+}
+server_socket::server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port)
+{
+    if(("ipv4" == internet_address_family) && ("tcp" == socket_type) && ("any" == ip_address))
+    {
+        this->socket_creation();
+        this->socket_bind(ip_address, port);
+    }
+    else
+    {
+        excep_hander.print_and_exit("please write correctly.");
+    }
+}
+server_socket::server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port, int listen_num)
+{
+    if(("ipv4" == internet_address_family) && ("tcp" == socket_type) && ("any" == ip_address))
+    {
+        this->socket_creation();
+        this->socket_bind(ip_address, port);
+        this->socket_listen(listen_num);
+    }
+    else
+    {
+        excep_hander.print_and_exit("please write correctly.");
+    }
+}
+
 
 // copy, copy assignment, move, move assignment.
 server_socket::server_socket(const server_socket &other)
@@ -29,34 +74,56 @@ server_socket & server_socket::operator = (const server_socket &other)
 }
 
 // socket creation 
-int server_socket::socket_creation()
+void server_socket::socket_creation()
 {
     this->conn_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (this->conn_fd < 0)
     {
         excep_hander.print_and_exit("Error in socket creation.");
     }
-    return this->conn_fd;
 }
 
 // socket bind 
-int server_socket::socket_bind()
+void server_socket::socket_bind(std::string ip_address, wchar_t port)
 {
-    struct sockaddr_in serv_addr; 
-    int address = sizeof(serv_addr);
-    const wchar_t PORT = 8080;
-
     memset(&serv_addr, '0', sizeof(serv_addr));
     serv_addr.sin_family = AF_INET;
-    serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
-    serv_addr.sin_port = htons(PORT); 
+    if ("any" == ip_address)
+    {
+        serv_addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    }
+    else
+    {
+        excep_hander.print_and_exit("please write right ip address.");
+    }
+    serv_addr.sin_port = htons(port); 
     
     recv_status = bind(conn_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr));
     if (recv < 0)
     {
         excep_hander.print_and_exit("bind fail.");
     }
-    return this->conn_fd;
+}
+
+// listen 
+void server_socket::socket_listen(int listen_num)
+{
+    if ((listen(conn_fd, listen_num)) < 0)
+    {
+        excep_hander.print_and_exit("listen fail.");
+    }
+}
+
+int server_socket::socket_accept()
+{
+    int address = sizeof(serv_addr);
+    int new_socket = accept(conn_fd, (struct sockaddr *) & serv_addr, (socklen_t*) &address);
+    if (new_socket < 0)
+    {
+        perror("accept error!!!!");
+        exit(EXIT_FAILURE);
+    }
+    return new_socket;
 }
 
 // closed

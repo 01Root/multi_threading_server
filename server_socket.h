@@ -5,6 +5,7 @@
 #include <iostream>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include <string>
 
 #include "./utils/file.h"
 #include "./utils/exception_hander.h"
@@ -15,6 +16,14 @@ class server_socket
 {
     private:
         int conn_fd;
+        std::string internet_address_family;
+        std::string socket_type;
+
+        std::string ip_address;
+        wchar_t port;
+        struct sockaddr_in serv_addr; 
+
+        int listen_num;
         
         int recv_status;
 
@@ -27,6 +36,9 @@ class server_socket
         // constructor
         explicit server_socket();
         explicit server_socket(int new_socket);
+        explicit server_socket(std::string internet_address_family,std::string socket_type);
+        explicit server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port);
+        explicit server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port, int listen_num);
 
         // copy, copy assignment, move, move assignment  
         server_socket(const server_socket &other);
@@ -35,13 +47,16 @@ class server_socket
         server_socket & operator = (const server_socket && other) = delete;
 
         // socket creation.
-        int socket_creation();
+        void socket_creation();
 
         // bind 
-        int socket_bind();
+        void socket_bind(std::string ip_address, wchar_t port);
 
         // listen 
-        
+        void socket_listen(int listen_num);
+
+        // accept
+        int socket_accept();
 
         // destructor
         ~server_socket();
