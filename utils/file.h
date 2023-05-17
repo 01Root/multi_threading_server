@@ -27,6 +27,9 @@ class file
         file (file && other);
         file & operator = (const file &&other) = delete;
 
+        // close
+        void closed();
+
         // destructor
         ~file();
 

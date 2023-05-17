@@ -39,18 +39,27 @@ file::file(file && other)
     this->ofs = std::move(other.ofs);
 }
 
+// closed
+void file::closed()
+{
+    this->ofs.close();
+    this->close_status = true;
+}
+
 // destructor
 file::~file()
 {
-    try
+    if (!this->close_status)
     {
-        ofs.close();
+        try
+        {
+            this->ofs.close();
+        }
+        catch(...)
+        {
+            excep_hander.print_and_exit("close file fail.");
+        }
     }
-    catch(...)
-    {
-        excep_hander.print_and_exit("close file fail.");
-    }
-    
 }
 
 // get function 
