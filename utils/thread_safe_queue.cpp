@@ -18,6 +18,17 @@ void thread_safe_queue<T>::push (T value)
     this->cv.notify_one();
 }
 
+
+// front
+template <typename T>
+T thread_safe_queue<T>::front()
+{
+    if(!this->conn_queue.empty())
+    {
+        return this->conn_queue.front();
+    }
+}
+
 template <typename T>
 bool thread_safe_queue<T>::empty()
 {

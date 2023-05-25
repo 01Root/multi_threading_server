@@ -37,9 +37,9 @@ int main(int argc, char * argv[])
 
         int new_socket = server.socket_accept();
         
-        std::cout << "new connection is :" << new_socket << std::endl;
-        std::cout << "Recv new connection push into conn_queue" << std::endl;
+        std::cout << "Recv new connection, push the new connection " << new_socket << " into queue." << std::endl;
         conn_queue.push(new_socket);
+        std::cout << "check the front value of conn_queue: " << conn_queue.front() << std::endl;
     }
 
     return 0;

@@ -43,6 +43,9 @@ class server_socket
         // swap
         void swap(server_socket & lhs, server_socket & rhs);
 
+        // get function 
+        int get_conn_fd();
+
         // copy, copy assignment, move, move assignment  
         server_socket(const server_socket &other);
         server_socket & operator = (const server_socket &other);

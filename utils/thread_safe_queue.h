@@ -26,6 +26,7 @@ class thread_safe_queue
         thread_safe_queue<T> & operator = (const thread_safe_queue<T> && other) = delete;
 
         void push(T value);
+        T front();
         bool empty();
         T wait_and_pop();
 };

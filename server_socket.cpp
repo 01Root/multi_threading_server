@@ -66,6 +66,12 @@ void server_socket::swap(server_socket & lhs, server_socket & rhs)
     std::swap(lhs.excep_hander, rhs.excep_hander);
 }
 
+// get function 
+int server_socket::get_conn_fd()
+{
+    return this->conn_fd;
+}
+
 // copy, copy assignment, move, move assignment.
 server_socket::server_socket(const server_socket &other)
 {
