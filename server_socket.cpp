@@ -151,16 +151,23 @@ char * server_socket::server_recv()
     }
     recv_buff[recv_status] = '\0';
 
-    std::cout << "The received buffer is " << recv_buff << std::endl;
+    // std::cout << "The received buffer is " << recv_buff << std::endl;
+    std::cout << "The whole buffer is " << std::endl;
+    
+    for (int i = 0; i < 1024; ++i)
+    {
+        std::cout << recv_buff[i];
+    }
     return recv_buff;
 }
 void server_socket::server_recv(file & recv_file)
 {
-    int file_size = recv_file.get_size();
+    // int file_size = recv_file.get_size();
     int recved_size = 0;
     std::ofstream &ofs = recv_file.get_ofs();
 
-    while (recved_size < file_size)
+    // while (recved_size < file_size)
+    while (recved_size < 101000000)
     {
         memset(recv_buff, '0', sizeof(recv_buff));
         // recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
@@ -174,6 +181,9 @@ void server_socket::server_recv(file & recv_file)
         // std::cout << "The received buffer is " << recv_buff << std::endl;
         recved_size += recv_status;
     }
+
+    // fflush(stdout); 
+
     std::cout << "recved_done." <<std::endl;
 }
 

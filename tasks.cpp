@@ -32,9 +32,10 @@ void tasks::doProcessing(server_socket & ss)
     std::ofstream &ofs = recv_file.get_ofs();
 
     // recv file size
+    std::cout << "recving file size." << std::endl;
     file_size = ss.server_recv();
     std::cout << "recv file size is " << file_size  << std::endl;
-    recv_file.set_size(atoi(file_size));
+    // recv_file.set_size(atoi(file_size));
 
     // recv file content
     ss.server_recv(recv_file);
