@@ -162,8 +162,6 @@ bool server_socket::recv_file_size(file & recv_file)
         return false;
     }
 
-    // std::cout << "The received buffer is " << recv_buff << std::endl;
-
     recv_file.set_size(atoi(recv_buff));
     return true;    
 }
@@ -176,7 +174,7 @@ void server_socket::recv_file_content(file & recv_file)
     while (recved_size < file_size)
     {
         memset(recv_buff, '0', BUFFER_SIZE);
-        // recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
+
         recv_status = recv(conn_fd, recv_buff, BUFFER_SIZE, 0);
         if (recv_status == -1)
         {
@@ -184,7 +182,7 @@ void server_socket::recv_file_content(file & recv_file)
         }
         recv_buff[recv_status] = '\0';
         ofs << recv_buff;
-        // std::cout << "The received buffer is " << recv_buff << std::endl;
+
         recved_size += recv_status;
     }
 
