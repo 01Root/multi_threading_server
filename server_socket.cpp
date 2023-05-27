@@ -169,12 +169,11 @@ bool server_socket::recv_file_size(file & recv_file)
 }
 void server_socket::recv_file_content(file & recv_file)
 {
-    // int file_size = recv_file.get_size();
+    int file_size = recv_file.get_size();
     int recved_size = 0;
     std::ofstream &ofs = recv_file.get_ofs();
 
-    // while (recved_size < file_size)
-    while (recved_size < 101000000)
+    while (recved_size < file_size)
     {
         memset(recv_buff, '0', sizeof(recv_buff));
         // recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
