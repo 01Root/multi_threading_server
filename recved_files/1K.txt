@@ -1,0 +1,31 @@
+Twilight is a young-adult vampire-romance novel by author Stephenie Meyer. 
+Twilight was initially rejected by 14 agents, 
+but became an instant bestseller when published originally in hardback in 2005
+, debuting at #5 on the New York Times 
+Best Seller list within a month of its release and later peaking at #1. 
+That same year, Twilight was named one of Publishers Weekly's Best Children's Books of 2005. 
+The novel was also the biggest selling book of 2008 
+and, to date, has sold 17 million copies worldwide, 
+spent over 91 weeks on the New York Times Best Seller list, 
+and been translated into 37 different languages.
+It is the first book of the Twilight series, 
+and introduces seventeen-year-old Isabella "Bella" Swan, 
+who moves from Phoenix, Arizona to Forks, Washington and 
+finds her life in danger when she falls in love with a vampire, 
+Edward Cullen. The novel is followed by New Moon, Eclipse, and Breaking Dawn.
+The buffer size of 32 bytes, as you are using, is definitely too small. 
+You make too many calls to library functions (and the library, in turn, makes calls (although probably not every time) to OS, 
+which are typically slow, since they cause context-switching). There is also no need of tell/seek.debuting at #5 on the New York Times 
+Best Seller list within a month of its release and later peaking at #1. 
+That same year, Twilight was named one of Publishers Weekly's Best Children's Books of 2005. 
+The novel was also the biggest selling book of 2008 
+and, to date, has sold 17 million copies worldwide, 
+spent over 91 weeks on the New York Times Best Seller list, 
+and been translated into 37 different languages.
+It is the first book of the Twilight series, 
+and introduces seventeen-year-old Isabella "Bella" Swan, 
+who moves from Phoenix, Arizona to Forks, Washington and 
+finds her life in danger when she falls in love with a vampire, 
+Edward Cullen. The novel is followed by New Moon, Eclipse, and Breaking Dawn.
+The buffer size of 32 bytes, as you are using, is definitely too small. 
+You make too many cal

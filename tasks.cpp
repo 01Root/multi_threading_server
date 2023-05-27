@@ -33,4 +33,6 @@ void tasks::doProcessing(server_socket & ss)
     {
         std::cout << "received file size." << std::endl;
     }
+
+    ss.recv_file_content(recv_file);
 }
