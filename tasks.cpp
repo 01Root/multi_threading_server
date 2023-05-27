@@ -21,6 +21,7 @@ void tasks::doProcessing(server_socket & ss)
     char * file_size = nullptr;
     char * file_content = nullptr;
 
+    // recv file name 
     file_name = ss.recv_file_name();
     std::cout << "recv file name is " <<file_name << std::endl;
 
@@ -33,6 +34,18 @@ void tasks::doProcessing(server_socket & ss)
     {
         std::cout << "received file size." << std::endl;
     }
+    else 
+    {
+        excep_hander.print_and_exit("Received file size fail.");
+    }
 
-    ss.recv_file_content(recv_file);
+    // recv file content.
+    if (ss.recv_file_content(recv_file))
+    {
+        std::cout << "Received file content success" << std::endl;
+    }
+    else
+    {
+        excep_hander.print_and_exit("Received file content fail.");
+    }
 }

@@ -16,3 +16,4 @@ void exception_hander::print_and_exit(std::string str)
     perror(str.c_str());
     exit(EXIT_FAILURE);
 }
+

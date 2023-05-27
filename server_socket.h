@@ -67,7 +67,7 @@ class server_socket
         // recv 
         char * recv_file_name();
         bool recv_file_size(file & recv_file);
-        void recv_file_content(file & recv_file);
+        bool recv_file_content(file & recv_file);
 
         // closed
         void closed();

@@ -165,7 +165,7 @@ bool server_socket::recv_file_size(file & recv_file)
     recv_file.set_size(atoi(recv_buff));
     return true;    
 }
-void server_socket::recv_file_content(file & recv_file)
+bool server_socket::recv_file_content(file & recv_file)
 {
     int file_size = recv_file.get_size();
     int recved_size = 0;
