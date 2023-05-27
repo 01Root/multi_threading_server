@@ -239,7 +239,7 @@ bool server_socket::recv_file_size(file & recv_file)
         return false;
     }
 
-    std::cout << "The received buffer is " << recv_buff << std::endl;
+    // std::cout << "The received buffer is " << recv_buff << std::endl;
 
     recv_file.set_size(atoi(recv_buff));
     return true;    

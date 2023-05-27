@@ -11,8 +11,6 @@ void * tasks::connectionHandler (thread_safe_queue<int> &conn_queue)
         std::cout << "The subThread " << syscall(SYS_gettid);
         std::cout << " is processing with the connect named " << result << std::endl;
 
-        // std::cout << "The subThread " << syscall(SYS_gettid) << " is ";
-        // std::cout << "processing : " << std::endl;
         this->doProcessing(ss);
     }
 }
@@ -23,25 +21,6 @@ void tasks::doProcessing(server_socket & ss)
     char * file_size = nullptr;
     char * file_content = nullptr;
 
-    // recv file name 
-    // file_name = ss.server_recv();
-    // std::cout << "recv file name is " <<file_name << std::endl;
-
-    // // create file 
-    // file recv_file(file_name);
-    // std::ofstream &ofs = recv_file.get_ofs();
-
-    // // recv file size
-    // std::cout << "recving file size." << std::endl;
-    // file_size = ss.server_recv();
-    // std::cout << "recv file size is " << file_size  << std::endl;
-    // // recv_file.set_size(atoi(file_size));
-
-    // // recv file content
-    // ss.server_recv(recv_file);
-
-    // ss.recv_data_from_client();
-
     file_name = ss.recv_file_name();
     std::cout << "recv file name is " <<file_name << std::endl;
 
@@ -50,8 +29,8 @@ void tasks::doProcessing(server_socket & ss)
     std::ofstream &ofs = recv_file.get_ofs();
 
     // recv file size
-    std::cout << "recving file size." << std::endl;
-    ss.recv_file_size(recv_file);
-    std::cout << "recv file size is " << file_size  << std::endl;
-    // recv_file.set_size(atoi(file_size));
+    if (ss.recv_file_size(recv_file))
+    {
+        std::cout << "received file size." << std::endl;
+    }
 }
