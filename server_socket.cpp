@@ -229,17 +229,20 @@ char * server_socket::recv_file_name()
     std::cout << "The received buffer is " << recv_buff << std::endl;
     return recv_buff;
 }
-char * server_socket::recv_file_size()
+bool server_socket::recv_file_size(file & recv_file)
 {
     memset(recv_buff, '0', BUFFER_SIZE);
     recv_status = recv(conn_fd, recv_buff, BUFFER_SIZE, 0);
     if (recv_status == -1)
     {
         excep_hander.print_and_exit("recv fail.");
+        return false;
     }
 
     std::cout << "The received buffer is " << recv_buff << std::endl;
-    return recv_buff;    
+
+    recv_file.set_size(atoi(recv_buff));
+    return true;    
 }
 void server_socket::recv_file_content(file & recv_file)
 {

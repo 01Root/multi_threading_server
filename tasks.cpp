@@ -51,7 +51,7 @@ void tasks::doProcessing(server_socket & ss)
 
     // recv file size
     std::cout << "recving file size." << std::endl;
-    file_size = ss.recv_file_size();
+    ss.recv_file_size(recv_file);
     std::cout << "recv file size is " << file_size  << std::endl;
     // recv_file.set_size(atoi(file_size));
 }
