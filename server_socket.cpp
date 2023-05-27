@@ -175,9 +175,9 @@ void server_socket::recv_file_content(file & recv_file)
 
     while (recved_size < file_size)
     {
-        memset(recv_buff, '0', sizeof(recv_buff));
+        memset(recv_buff, '0', BUFFER_SIZE);
         // recv_status = recv(conn_fd, recv_buff, sizeof(recv_buff)-1, 0);
-        recv_status = recv(conn_fd, recv_buff, 1024, 0);
+        recv_status = recv(conn_fd, recv_buff, BUFFER_SIZE, 0);
         if (recv_status == -1)
         {
             excep_hander.print_and_exit("recv fail.");
