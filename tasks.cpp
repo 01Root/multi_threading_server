@@ -24,7 +24,25 @@ void tasks::doProcessing(server_socket & ss)
     char * file_content = nullptr;
 
     // recv file name 
-    file_name = ss.server_recv();
+    // file_name = ss.server_recv();
+    // std::cout << "recv file name is " <<file_name << std::endl;
+
+    // // create file 
+    // file recv_file(file_name);
+    // std::ofstream &ofs = recv_file.get_ofs();
+
+    // // recv file size
+    // std::cout << "recving file size." << std::endl;
+    // file_size = ss.server_recv();
+    // std::cout << "recv file size is " << file_size  << std::endl;
+    // // recv_file.set_size(atoi(file_size));
+
+    // // recv file content
+    // ss.server_recv(recv_file);
+
+    // ss.recv_data_from_client();
+
+    file_name = ss.recv_file_name();
     std::cout << "recv file name is " <<file_name << std::endl;
 
     // create file 
@@ -33,10 +51,7 @@ void tasks::doProcessing(server_socket & ss)
 
     // recv file size
     std::cout << "recving file size." << std::endl;
-    file_size = ss.server_recv();
+    file_size = ss.recv_file_size();
     std::cout << "recv file size is " << file_size  << std::endl;
     // recv_file.set_size(atoi(file_size));
-
-    // recv file content
-    ss.server_recv(recv_file);
 }

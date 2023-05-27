@@ -67,6 +67,12 @@ class server_socket
         // recv 
         char * server_recv();
         void server_recv(file & recv_file);
+        void recv_data_from_client();
+
+        // recv 
+        char * recv_file_name();
+        char * recv_file_size();
+        void recv_file_content(file & recv_file);
 
         // closed
         void closed();
