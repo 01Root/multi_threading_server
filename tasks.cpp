@@ -30,22 +30,10 @@ void tasks::doProcessing(server_socket & ss)
     std::ofstream &ofs = recv_file.get_ofs();
 
     // recv file size
-    if (ss.recv_file_size(recv_file))
-    {
-        std::cout << "received file size." << std::endl;
-    }
-    else 
-    {
-        excep_hander.print_and_exit("Received file size fail.");
-    }
+    recv_status = ss.recv_file_size(recv_file);
+    excep_hander.judge_success_or_not(recv_status, "Received file size success.", "Received file size fail.");
 
     // recv file content.
-    if (ss.recv_file_content(recv_file))
-    {
-        std::cout << "Received file content success" << std::endl;
-    }
-    else
-    {
-        excep_hander.print_and_exit("Received file content fail.");
-    }
+    recv_status = ss.recv_file_content(recv_file);
+    excep_hander.judge_success_or_not(recv_status, "Received file content success.", "Received file content fail.");
 }

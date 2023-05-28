@@ -19,6 +19,7 @@ class tasks
 {   
     private:
         exception_hander excep_hander;
+        bool recv_status;
 
     public:
         void * connectionHandler (thread_safe_queue<int> &queue);
