@@ -20,12 +20,12 @@ int main(int argc, char * argv[])
 
     // make Thread pool.
     std::thread thread_pool[2];
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 1; ++i)
     {
         thread_pool[i] = std::thread(&tasks::connectionHandler, &task, std::ref(conn_queue));
         
     }
-    for (int i = 0; i < 2; ++i)
+    for (int i = 0; i < 1; ++i)
     {
         thread_pool[i].detach();
     }
