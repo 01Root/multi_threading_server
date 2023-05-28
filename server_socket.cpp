@@ -150,6 +150,13 @@ char * server_socket::recv_file_name()
     }
 
     std::cout << "The received buffer is " << recv_buff << std::endl;
+
+    // std::cout << "The Whole received buffer of file name is :";
+    // for (int i = 0; i < BUFFER_SIZE; ++i)
+    // {
+    //     std::cout << recv_buff[i];
+    // }
+
     return recv_buff;
 }
 bool server_socket::recv_file_size(file & recv_file)
@@ -161,6 +168,12 @@ bool server_socket::recv_file_size(file & recv_file)
         excep_hander.print_and_exit("recv fail.");
         return false;
     }
+
+    // std::cout << "The Whole received buffer of file size is :";
+    // for (int i = 0; i < BUFFER_SIZE; ++i)
+    // {
+    //     std::cout << recv_buff[i];
+    // }
 
     recv_file.set_size(atoi(recv_buff));
     return true;    
