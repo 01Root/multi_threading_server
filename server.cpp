@@ -39,7 +39,7 @@ int main(int argc, char * argv[])
         
         std::cout << "Recv new connection, push the new connection " << new_socket << " into queue." << std::endl;
         conn_queue.push(new_socket);
-        std::cout << "check the front value of conn_queue: " << conn_queue.front() << std::endl;
+        std::cout << "Check the front value of conn_queue: " << conn_queue.front() << std::endl;
     }
 
     return 0;
