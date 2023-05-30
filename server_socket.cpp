@@ -199,7 +199,7 @@ bool server_socket::recv_file_content(file & recv_file)
         recved_size += recv_status;
     }
 
-    std::cout << "recved_done." <<std::endl;
+    return true;
 }
 
 // closed
