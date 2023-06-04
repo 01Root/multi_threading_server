@@ -1,23 +1,23 @@
-#include "server_socket.h"
-#include "tasks.h"
+// #include "server_socket.h"
+// #include "tasks.h"
 
-#define PORT 8080
+// #define PORT 8080
 
-int main(int argc, char * argv[])
-{
-    // creation and bind and listen.
-    server_socket server("ipv4", "tcp", "any", 8080, 10);
+// int main(int argc, char * argv[])
+// {
+//     // creation and bind and listen.
+//     server_socket server("ipv4", "tcp", "any", 8080, 10);
 
-    while (1)
-    {
-        int new_socket = server.socket_accept();
+//     while (1)
+//     {
+//         int new_socket = server.socket_accept();
 
-        server_socket ss(new_socket);
+//         server_socket ss(new_socket);
 
-        tasks task;
+//         tasks task;
 
-        task.doProcessing(ss);
-    }
+//         task.doProcessing(ss);
+//     }
 
-    return 0;
-}
+//     return 0;
+// }

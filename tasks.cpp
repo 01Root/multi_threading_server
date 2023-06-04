@@ -32,10 +32,10 @@ void tasks::doProcessing(server_socket & ss)
     // recv file size
     std::cout << "Start recv file size." << std::endl;
     recv_status = ss.recv_file_size(recv_file);
-    excep_hander.judge_success_or_not(recv_status, "Received file size success.", "Received file size fail.");
+    exception_hander::judge_success_or_not(recv_status, "Received file size success.", "Received file size fail.");
 
     // recv file content.
     std::cout << "Start recv file content." << std::endl;
     recv_status = ss.recv_file_content(recv_file);
-    excep_hander.judge_success_or_not(recv_status, "Received file content success.", "Received file content fail.");
+    exception_hander::judge_success_or_not(recv_status, "Received file content success.", "Received file content fail.");
 }

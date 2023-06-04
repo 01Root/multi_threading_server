@@ -29,7 +29,7 @@ server_socket::server_socket(std::string internet_address_family,std::string soc
     }
     else
     {
-        excep_hander.print_and_exit("please write right address family and socket type.");
+        exception_hander::print_and_exit("please write right address family and socket type.");
     }
 }
 server_socket::server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port)
@@ -41,7 +41,7 @@ server_socket::server_socket(std::string internet_address_family,std::string soc
     }
     else
     {
-        excep_hander.print_and_exit("please write correct ip address.");
+        exception_hander::print_and_exit("please write correct ip address.");
     }
 }
 server_socket::server_socket(std::string internet_address_family,std::string socket_type, std::string ip_address, wchar_t port, int listen_num)
@@ -91,7 +91,7 @@ void server_socket::socket_creation()
     this->conn_fd = socket(AF_INET, SOCK_STREAM, 0);
     if (this->conn_fd < 0)
     {
-        excep_hander.print_and_exit("Error in socket creation.");
+        exception_hander::print_and_exit("Error in socket creation.");
     }
 }
 
@@ -106,14 +106,14 @@ void server_socket::socket_bind(std::string ip_address, wchar_t port)
     }
     else
     {
-        excep_hander.print_and_exit("please write right ip address.");
+        exception_hander::print_and_exit("please write right ip address.");
     }
     serv_addr.sin_port = htons(port); 
     
     recv_status = bind(conn_fd, (struct sockaddr *) &serv_addr, sizeof(serv_addr));
     if (recv < 0)
     {
-        excep_hander.print_and_exit("bind fail.");
+        exception_hander::print_and_exit("bind fail.");
     }
 }
 
@@ -122,7 +122,7 @@ void server_socket::socket_listen(int listen_num)
 {
     if ((listen(conn_fd, listen_num)) < 0)
     {
-        excep_hander.print_and_exit("listen fail.");
+        exception_hander::print_and_exit("listen fail.");
     }
 }
 
@@ -146,7 +146,7 @@ char * server_socket::recv_file_name()
     recv_status = recv(conn_fd, recv_buff, BUFFER_SIZE, 0);
     if (recv_status == -1)
     {
-        excep_hander.print_and_exit("recv fail.");
+        exception_hander::print_and_exit("recv fail.");
     }
 
     std::cout << "The received buffer is " << recv_buff << std::endl;
@@ -165,7 +165,7 @@ bool server_socket::recv_file_size(file & recv_file)
     recv_status = recv(conn_fd, recv_buff, BUFFER_SIZE, 0);
     if (recv_status == -1)
     {
-        excep_hander.print_and_exit("recv fail.");
+        exception_hander::print_and_exit("recv fail.");
         return false;
     }
 
@@ -189,15 +189,20 @@ bool server_socket::recv_file_content(file & recv_file)
         memset(recv_buff, '0', BUFFER_SIZE);
 
         recv_status = recv(conn_fd, recv_buff, BUFFER_SIZE, 0);
+        // std::cout << "the recv buffer is " << recv_buff << std::endl;
         if (recv_status == -1)
         {
-            excep_hander.print_and_exit("recv fail.");
+            exception_hander::print_and_exit("recv fail.");
         }
         recv_buff[recv_status] = '\0';
         ofs << recv_buff;
 
+        // std::cout << "recved size is " << recved_size << std::endl;
         recved_size += recv_status;
     }
+    std::cout << "recved size is " << recved_size << std::endl;
+    std::cout << "file size is " << file_size << std::endl;
+
 
     return true;
 }
@@ -220,7 +225,7 @@ server_socket::~server_socket()
         }
         catch(...)
         {
-            excep_hander.print_and_exit("close connection fail!");
+            exception_hander::print_and_exit("close connection fail!");
         }
     }
 }
